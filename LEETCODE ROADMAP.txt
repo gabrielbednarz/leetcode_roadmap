@@ -1,0 +1,35 @@
+-------------
+LeetCode #217
+-------------
+
+
+
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        nums = sorted(nums)
+        for i in range(len(nums) - 1):
+            if nums[i] == nums[i + 1]:
+                return True
+        return False
+
+O(nlog(n)) (Timsort), but saves memory.
+
+Bad:
+
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:        
+        for i in range(len(nums) - 1):
+            for j in range(i + 1, len(nums)):
+
+                if nums[i] == nums[j]:
+                    return True
+        return False
+
+
+Good, O(n):
+
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        if len(nums) == len(set(nums)):  # This causes O(n).
+            return False
+        return True
