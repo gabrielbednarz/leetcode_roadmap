@@ -3,6 +3,7 @@ LeetCode #217
 -------------
 
 
+O(nlog(n)) (Timsort), but saves memory:
 
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
@@ -12,7 +13,7 @@ class Solution:
                 return True
         return False
 
-O(nlog(n)) (Timsort), but saves memory.
+
 
 Bad:
 
@@ -26,10 +27,30 @@ class Solution:
         return False
 
 
-Good, O(n):
+
+Good, O(n) space and O(n) time:
 
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
-        if len(nums) == len(set(nums)):  # This causes O(n).
+        if len(nums) == len(set(nums)):  # This, set(nums), causes O(n) space and time.
             return False
         return True
+        
+        
+        
+-------------
+LeetCode #242
+-------------
+
+
+Good, O(n) time and O(1) space:
+
+from collections import Counter
+
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        
+        return dict(Counter(s)) == dict(Counter(t))
+        
+        
+        
