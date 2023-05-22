@@ -84,3 +84,18 @@ class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
         return sorted(s) == sorted(t)
 
+
+
+
+
+-----------
+LeetCode #1
+-----------
+
+
+
+The trick is to search for target - n inside a hashmap.
+
+
+
+
