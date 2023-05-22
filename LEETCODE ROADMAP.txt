@@ -54,3 +54,33 @@ class Solution:
         
         
         
+Why this, similar to the previous, is O(1) space? Only if we exclude the space of inputs, strings s and t,
+thus taking the auxiliary space equals O(1), but also we have to assume that there is a fixed number of characters
+from which s and t could be composed. If that number is potentially infinite, the dictionaries space rises to O(n).
+
+To be precise, the solution has the time complexity of O(s + t):
+
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        a = {}
+        b = {}
+        for i in s:
+            if i not in a:
+                a[i] = 1
+            else:
+                a[i] += 1
+        for i in t:
+            if i not in b:
+                b[i] = 1
+            else:
+                b[i] += 1
+        return a == b
+        
+        
+        
+Using Timsort, O(nlog(n)) time and O(n) space:
+
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        return sorted(s) == sorted(t)
+
