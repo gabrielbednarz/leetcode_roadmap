@@ -95,10 +95,14 @@ LeetCode #1
 -----------
 
 
-We are not allowed to use the same index many times. However, the same two numbers could add up to the target 
-only if they are of different indexes.
+We are not allowed to use the same index many times. However, the same two numbers could add up to the target only if 
+they are of different indexes.
 
-The trick is to search for target - n inside a hashmap. Seems like an easy 'observation' (insight).
+The trick is to search for (target - n) inside a hashmap. Seems like an easy 'observation' (insight). However, while we are 
+searching for the difference, we don't want to iterate over the whole hashmap because there is a case where the same two 
+numbers could add up to the target, so the loop would return two identical indexes, which is forbidden.
+
+
 
 
 
