@@ -100,9 +100,21 @@ they are of different indexes.
 
 The trick is to search for (target - n) inside a hashmap. Seems like an easy 'observation' (insight). However, while we are 
 searching for the difference, we don't want to iterate over the whole hashmap because there is a case where the same two 
-numbers could add up to the target, so the loop would return two identical indexes, which is forbidden.
+numbers could add up to the target, so the loop would return two identical indexes, which is forbidden. Therefore, we will
+loop through the array, but we will check if (target - n) exists in the subarray omitting this part of the array upon which 
+we already iterated.
+
+By searching for (target - n) we are also checking if n exists and we have the index of n at our disposal via using a hashmap.
 
 
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        seen = {}
+        for i, n in enumerate(nums):
+            if target - n in seen:
+                return [i, seen[target - n]]
+            else:
+                seen[n] = i
 
 
 
