@@ -158,7 +158,7 @@ class Solution:
 
 
 
-Not relevent to the task, without case-sensitivity and ignoring non-alphanumeric characters, yet simple:
+Not relevent to the task, without case-sensitivity and without ignoring non-alphanumeric characters, yet simple:
 
 def is_palindrome(s):
     string_len = len(s)
