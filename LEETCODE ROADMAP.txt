@@ -119,3 +119,21 @@ class Solution:
 
 
 
+-------------
+LeetCode #125
+-------------
+
+
+
+O(3n) time and O(3n) space:
+
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        s = ''.join(c for c in s if c.isalnum())
+        s = s.lower()
+        return s == s[::-1]
+
+
+
+However, the goal is to use pointers to achieve O(1) space.
+
