@@ -158,5 +158,15 @@ class Solution:
 
 
 
+Not relevent to the task, without case-sensitivity and ignoring non-alphanumeric characters, yet simple:
+
+def is_palindrome(s):
+    string_len = len(s)
+    if string_len <= 1:
+        return True
+    for i in range(0, string_len // 2):
+        if string[i].upper() != s[string_len - i - 1].upper():
+            return False
+    return True
 
 
