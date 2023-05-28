@@ -1,0 +1,53 @@
+
+-------------
+LeetCode #125
+-------------
+
+
+
+O(3n) time and O(3n) space:
+
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        s = ''.join(c for c in s if c.isalnum())
+        s = s.lower()
+        return s == s[::-1]
+
+
+
+However, the goal is to use pointers to achieve O(1) space:
+
+def alnum(c):
+        return ord('0') <= ord(c) <= ord('9') or \
+               ord('a') <= ord(c) <= ord('z') or \
+               ord('A') <= ord(c) <= ord('Z')
+
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        l, r = 0, len(s) - 1
+        while l < r:
+            while l < r and not alnum(s[l]):
+                l += 1
+            while l < r and not alnum(s[r]):
+                r -= 1
+            if s[l].lower() != s[r].lower():
+                return False
+            l += 1
+            r -= 1
+        return True
+
+
+
+Not relevent to the task, without case-sensitivity and without ignoring non-alphanumeric characters, yet simple:
+
+def is_palindrome(s):
+    string_len = len(s)
+    if string_len <= 1:
+        return True
+    for i in range(0, string_len // 2):
+        if string[i].upper() != s[string_len - i - 1].upper():
+            return False
+    return True
+
+
+
