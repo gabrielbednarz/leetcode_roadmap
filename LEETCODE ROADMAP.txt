@@ -170,3 +170,19 @@ def is_palindrome(s):
     return True
 
 
+
+
+
+
+------------
+LeetCode #20
+------------
+
+
+
+First, know that counter(s) will not keep the track of the correct structure, so using a stack is a must.
+A hashmap makes the solution more space efficient.
+
+
+
+
