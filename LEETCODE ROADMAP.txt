@@ -185,4 +185,47 @@ A hashmap makes the solution more space efficient.
 
 
 
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = []
+        for i in s:
+            if i in '{[(':
+                stack.append(i)
+            elif len(stack) == 0:
+                return False
+            elif i == ')' and stack[-1] != '(':
+                return False
+            elif i == '}' and stack[-1] != '{':
+                return False
+            elif i == ']' and stack[-1] != '[':
+                return False
+            else:
+                stack.pop(-1)
+        return not len(stack)
+
+
+
+Simplified to:
+
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = []
+        hashmap = {')': '(', ']': '[', '}': '{'}
+        for i in s:
+            if i in hashmap:
+                if stack and stack[-1] == hashmap[i]:
+                    stack.pop(-1)
+                else:
+                    return False
+            else:
+                stack.append(i)
+        return not stack
+        
+        
+Remember to use pop(-1), it is more efficient than pop(0).
+        
+        
+        
+
+
 
