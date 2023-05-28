@@ -1,1 +1,120 @@
 
+
+-------------
+LeetCode #217
+-------------
+
+
+O(nlog(n)) (Timsort), but saves memory:
+
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        nums = sorted(nums)
+        for i in range(len(nums) - 1):
+            if nums[i] == nums[i + 1]:
+                return True
+        return False
+
+
+
+Bad:
+
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:        
+        for i in range(len(nums) - 1):
+            for j in range(i + 1, len(nums)):
+
+                if nums[i] == nums[j]:
+                    return True
+        return False
+
+
+
+Good, O(n) space and O(n) time:
+
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        if len(nums) == len(set(nums)):  # This, set(nums), causes O(n) space and time.
+            return False
+        return True
+        
+        
+        
+-------------
+LeetCode #242
+-------------
+
+
+Good, O(n) time and O(1) space:
+
+from collections import Counter
+
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        
+        return dict(Counter(s)) == dict(Counter(t))
+        
+        
+        
+Why this, similar to the previous, is O(1) space? Only if we exclude the space of inputs, strings s and t,
+thus taking the auxiliary space equals O(1), but also we have to assume that there is a fixed number of characters
+from which s and t could be composed. If that number is potentially infinite, the dictionaries space rises to O(n).
+
+To be precise, the solution has the time complexity of O(s + t):
+
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        a = {}
+        b = {}
+        for i in s:
+            if i not in a:
+                a[i] = 1
+            else:
+                a[i] += 1
+        for i in t:
+            if i not in b:
+                b[i] = 1
+            else:
+                b[i] += 1
+        return a == b
+        
+        
+        
+Using Timsort, O(nlog(n)) time and O(n) space:
+
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        return sorted(s) == sorted(t)
+
+
+
+
+
+-----------
+LeetCode #1
+-----------
+
+
+We are not allowed to use the same index many times. However, the same two numbers could add up to the target only if 
+they are of different indexes.
+
+The trick is to search for (target - n) inside a hashmap. Seems like an easy 'observation' (insight). However, while we are 
+searching for the difference, we don't want to iterate over the whole hashmap because there is a case where the same two 
+numbers could add up to the target, so the loop would return two identical indexes, which is forbidden. Therefore, we will
+loop through the array, but we will check if (target - n) exists in the subarray omitting this part of the array upon which 
+we already iterated.
+
+By searching for (target - n) we are also checking if n exists and we have the index of n at our disposal via using a hashmap.
+
+
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        seen = {}
+        for i, n in enumerate(nums):
+            if target - n in seen:
+                return [i, seen[target - n]]
+            else:
+                seen[n] = i
+
+
+
