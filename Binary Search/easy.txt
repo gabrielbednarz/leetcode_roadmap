@@ -19,3 +19,7 @@ class Solution:
             else:
                 right = mid - 1
         return -1
+
+
+At most log(n) floor divisions by 2, thus O(log(n) time. No data structures created, thus O(1) space.
+
