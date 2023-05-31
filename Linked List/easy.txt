@@ -25,7 +25,7 @@ class Solution:
         prev = None
         curr = head
         while curr:  # curr will eventually get to None (next attribute is set to None by default.)
-            s = curr.next  # We stor it, so that curr = s.
+            s = curr.next  # We store it, so that curr = s.
             curr.next = prev  # next backwards... we need prev for this.
             prev = curr  # prev to curr, curr to...
             curr = s  # the stored s.
