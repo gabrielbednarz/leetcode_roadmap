@@ -1,1 +1,28 @@
 
+-------------
+LeetCode #206
+-------------
+
+# Solution with pointers. O(n) time, O(1) space.
+
+| | s
+  1-2-3-4
+  
+We should store (s) the next of the current pointer (on 1). That should be done before changing the current pointer 
+and assigning its next attribute to the value of the previous pointer (on the drawing, it points to None).
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        prev = None
+        curr = head
+        while curr:  # curr will eventually get to None (next attribute is set to None by default.)
+            s = curr.next  # We stor it, so that curr = s.
+            curr.next = prev  # next backwards... we need prev for this.
+            prev = curr  # prev to curr, curr to...
+            curr = s  # the stored s.
+        return prev
