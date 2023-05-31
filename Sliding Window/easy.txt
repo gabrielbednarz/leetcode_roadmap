@@ -1,1 +1,8 @@
 
+-------------
+LeetCode #121
+-------------
+
+
+The sliding window is a potential strategy to solve a problems that ask for an optimal subsequence. The sliding window involves two pointers (l and r).
+The essence: if l > r, update both (we don't buy and sell at the same time); if l < r, update 
