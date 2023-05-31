@@ -5,4 +5,26 @@ LeetCode #121
 
 
 The sliding window is a potential strategy to solve a problems that ask for an optimal subsequence. The sliding window involves two pointers (l and r).
-The essence: if l > r, update both (we don't buy and sell at the same time); if l < r, update 
+The essence: if l > r, update both (we don't buy and sell at the same time); if l < r, update r (search for higher price). For every case in which l < r,
+calculate the current max profit, store it, and return the global maximum.
+
+
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        l = 0
+        r = 1
+        curr_max = 0
+        while r < len(prices):
+            if prices[l] >= prices[r]:
+                l = r  # Inefficient or could not find the local maximum if l += 1.
+                       # Compare: prices = [1,2,4,2,5,7,2,4,9,0,9].
+                r += 1  # Search for bigger number.
+            else:
+                curr_max = max(curr_max, prices[r] - prices[l])
+                r += 1  # Search for bigger number.
+        return curr_max
+        
+        
+        
+
+
