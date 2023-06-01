@@ -87,6 +87,9 @@ LeetCode #141
 
 
 
+Use a hashmap of nodes (class objects, not values) to detect the cycle. However, this would take O(n) space, and we can do O(1)
+with Floyd's tortoise and hare algorithm.
+
 
 
 
