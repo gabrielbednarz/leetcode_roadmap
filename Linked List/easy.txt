@@ -30,3 +30,64 @@ class Solution:
             prev = curr  # prev to curr, curr to...
             curr = s  # the stored s.
         return prev
+
+
+
+
+
+------------
+LeetCode #21
+------------
+
+
+Merge two lists. They do not have to be linked. Two pointers solution but the left doesn't move and it is used to reference the head
+via left.next, since if we don't have the head, we don't have the full (merged) list. left can be called a placeholder. 
+
+To be specific, we use four pointers in total, including list1 and list2 as two heads. So actually, what make those lists linked lists 
+are the lines:
+
+list1 = list1.next
+list2 = list2.next
+
+because these two pointers, i.e. the heads: list1 and list2, are referencing the next node which is of the least higher value.
+
+
+class Solution:
+    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+        left = ListNode()  # Dummy node. The head will be left.next.
+        right = left
+        while list1 and list2:  # This deals only with the case where both lists are not empty.
+            if list1.val < list2.val:
+                right.next = list1
+                list1 = list1.next
+            else:
+                right.next = list2
+                list2 = list2.next
+            
+            right = right.next
+
+        # if list1:
+        #     right.next = list1
+        # elif list2:
+        #     right.next = list2
+
+        right.next = list1 or list2
+        
+        return left.next
+
+
+
+
+
+
+
+-------------
+LeetCode #141
+-------------
+
+
+
+
+
+
+
