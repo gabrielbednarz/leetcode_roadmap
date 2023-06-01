@@ -87,9 +87,23 @@ LeetCode #141
 
 
 
-Use a hashmap of nodes (class objects, not values) to detect the cycle. However, this would take O(n) space, and we can do O(1)
-with Floyd's tortoise and hare algorithm.
+We can use a hashmap of nodes (class objects, not values) to detect a cycle. However, this approach would require O(n) space. We can achieve 
+a more space-efficient solution, i.e., O(1) space, by using Floyd's tortoise and hare algorithm. If there is a cycle and the fast (f) and slow 
+(s) pointers are not in the same position, then, since we cannot escape the cycle once we enter it, the distance 'n' (a natural number) decreases 
+by 1 after each iteration in which the slow pointer moves by one node and the fast pointer moves by two nodes. So the fast pointer, surpassing 
+the slow, will eventually meet it. In a worst-case scenario, if the fast pointer starts just behind the slow one, the time complexity of detecting 
+a cycle would be equivalent to the length of the cycle minus one. So the time complexity is O(n). It's O(1) space since we're only using pointers.
 
+class Solution:
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        slow, fast = head, head
+
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
+                return True
+        return False
 
 
 
