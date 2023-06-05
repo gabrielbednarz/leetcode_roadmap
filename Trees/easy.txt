@@ -40,4 +40,34 @@ class Solution:
             
 DFS - Depth-First Search. Recursive approach.
 
-1. You use an implicit stack.
+1. You use an implicit stack. What is popped are the recursive calls of the isSameTree function.
+2. The approach 'inherits' True or False. E.g., one leaf has value of 1, and the analogous leaf of the second tree has the 
+   value of 2. From p.val != q.val the False is returned, and saved in either a or b variable, thus this False will be
+   inherited by the supra-iterations.
+3. We are now bound to execute all the call stack... however, we already know that the trees are not identical, so this is
+   inefficient. Therefore, we could use short-circuit evaluation or early return.
+   
+   
+class Solution:
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        if not p and not q:
+            return True
+        elif not p or not q or p.val != q.val:
+            return False
+
+        # The recursive step with short-circuiting:
+
+        # We use logical 'and' operator. As soon as one of its operands is False, it stops the evaluation and returns False.
+        # So if the left subtrees are not the same, it will not check the right subtrees.
+        
+        return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+        
+        
+        
+        
+However, both of these approaches are O(n) time and O(h) space (h could be n, in case of a skewed tree, or log(n) in case
+of a balanced binary tree). n - the number of nodes.
+
+
+
+
