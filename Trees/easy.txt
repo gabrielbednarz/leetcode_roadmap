@@ -6,8 +6,6 @@ LeetCode #100
 
 
 
-Recursive DFS on binary trees. Same roots, same leaves, which are roots. If recursive, then several base cases.
-
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -15,6 +13,10 @@ Recursive DFS on binary trees. Same roots, same leaves, which are roots. If recu
 #         self.left = left
 #         self.right = right
 
+
+
+
+Recursive, pre-order DFS on binary trees. Same roots, same leaves, which are roots. If recursive, then several base cases.
 
 class Solution:
     def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
@@ -88,7 +90,22 @@ class Solution:
 
 
 
-Iterative DFS, with explicit stack emulating the call stack.
+Iterative, pre-order DFS, with explicit stack emulating the call stack:
+
+class Solution:
+    def maxDepth(self, root):
+        
+        max_depth = 0
+        stack = [(root, 1)]
+        
+        while stack:
+            node, depth = stack.pop()
+            if node:
+                max_depth = max(max_depth, depth)
+                stack.append((node.left, depth + 1))
+                stack.append((node.right, depth + 1))
+        
+        return max_depth
 
 
 
