@@ -141,3 +141,48 @@ class Solution:
 
 
 
+
+-------------
+LeetCode #226
+-------------
+
+
+Invert binary tree. Recursive DFS with pre-order traversal:
+
+class Solution:
+    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        if not root:
+            return None
+        
+        # Swap the children.
+
+        root.left, root.right = root.right, root.left
+
+        # Recursive, pre-order DFS.
+
+        self.invertTree(root.left)
+        self.invertTree(root.right)
+
+        return root
+
+
+
+
+
+
+
+-------------
+LeetCode #116
+-------------
+
+
+Balanced binary tree. Calculate: |(height of left subtree) - (height of right subtree)| <= 1. The difference between the HEIGHT 
+of the left subtree and right subtree for every node is not more than k (usually k = 1).
+
+Height of a binary tree is the number of edges/links on the longest path between the root node & leaf node. And a subtree begins 
+from the node below a given node. 
+
+Examples include: Red-Black Tree and AVL Tree.
+
+
+
