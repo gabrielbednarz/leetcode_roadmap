@@ -102,15 +102,41 @@ class Solution:
         stack = [(root, 1)]
         
         while stack:
-            node, depth = stack.pop()
-            if node:
+            root, depth = stack.pop()
+            if root:
                 max_depth = max(max_depth, depth)
-                stack.append((node.left, depth + 1))
-                stack.append((node.right, depth + 1))
+                stack.append((root.left, depth + 1))
+                stack.append((root.right, depth + 1))
         
         return max_depth
+        
+        
+        
+
+BFS solution, level-order traversal. We use queue and pop the visited nodes. This is just a queue, we are not using anything specific 
+to the deque, but we import deque because its popleft() method is O(1) time in contrast to pop(0), which is O(n). However, all the
+solutions for this task are O(n) time and space.
 
 
+from collections import deque
+
+class Solution:
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        if not root:
+            return 0
+
+        queue = deque([(root, 1)])
+        max_depth = 0
+
+        while queue:
+            node, depth = queue.popleft() 
+            max_depth = max(max_depth, depth)
+            if node.left:
+                queue.append((node.left, depth + 1)) 
+            if node.right:
+                queue.append((node.right, depth + 1))
+
+        return max_depth
 
 
 
