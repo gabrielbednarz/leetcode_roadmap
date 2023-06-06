@@ -90,7 +90,10 @@ class Solution:
 
 
 
-Iterative, pre-order DFS, with explicit stack emulating the call stack:
+
+Iterative, pre-order DFS, with explicit stack emulating the call stack. Note that this pre-order traversal is not standard. We decide to traverse 
+both children of a node (if they exist) before going deeper into the next level. In the above standard version, after processing the current node, 
+we recursively traverse the left subtree, then we traverse the right subtree. This is what people generally mean when they refer to pre-order traversal.
 
 class Solution:
     def maxDepth(self, root):
@@ -106,6 +109,9 @@ class Solution:
                 stack.append((node.right, depth + 1))
         
         return max_depth
+
+
+
 
 
 
