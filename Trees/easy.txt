@@ -185,4 +185,24 @@ from the node below a given node.
 Examples include: Red-Black Tree and AVL Tree.
 
 
+Each subtree is balanced:
+
+class Solution:
+    def isBalanced(self, root: TreeNode) -> bool:
+        return self.dfsHeight(root) != -1
+    
+    def dfsHeight(self, root):
+        if not root: return 0
+        leftHeight = self.dfsHeight(root.left)  # This line ensures DFS to the left leaf.
+        if leftHeight == -1: return -1
+        rightHeight = self.dfsHeight(root.right)
+        if rightHeight == -1: return -1
+        if abs(leftHeight - rightHeight) > 1: return -1
+        return max(leftHeight, rightHeight) + 1
+
+
+
+
+
+
 
