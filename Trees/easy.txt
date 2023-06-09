@@ -245,7 +245,34 @@ Define same_tree function, as above, inside the main function. Then the idea is 
 is identical to the subtree/smaller tree we were given.
 
 
+class Solution:
+    def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
 
+        def same_tree(r, s):
+            if not r and not s:
+                return True
+            if not r or not s:
+                return False
+            if r.val != s.val:
+                return False
+            return same_tree(r.left, s.left) and same_tree(r.right, s.right)
+        
+        # We have the function. Now the base cases.
+
+        if not subRoot:
+            return True
+        if not root:
+            return False
+        
+        # If both, then:
+
+        if same_tree(root, subRoot):
+            return True
+        
+        # Else traverse the tree and check if any of its subtree is identical to subRoot:
+
+        else:
+            return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)
 
 
 
