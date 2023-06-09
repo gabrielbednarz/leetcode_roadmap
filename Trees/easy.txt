@@ -193,12 +193,59 @@ class Solution:
     
     def dfsHeight(self, root):
         if not root: return 0
-        leftHeight = self.dfsHeight(root.left)  # This line ensures DFS to the left leaf.
+        leftHeight = self.dfsHeight(root.left)  # This line ensures DFS goes to the left leaf.
         if leftHeight == -1: return -1
         rightHeight = self.dfsHeight(root.right)
         if rightHeight == -1: return -1
         if abs(leftHeight - rightHeight) > 1: return -1
         return max(leftHeight, rightHeight) + 1
+
+
+
+
+
+-------------
+LeetCode #543
+-------------
+
+
+
+
+The code is similar to the one above.
+
+
+class Solution:
+    def diameterOfBinaryTree(self, root):
+        self.max_diameter = 0
+        
+        def number_of_edges(node):
+            if not node: 
+                return 0
+            # The next two lines ensure that we are going to the deepest leaves.
+            L = number_of_edges(node.left)
+            R = number_of_edges(node.right)
+            self.max_diameter = max(self.max_diameter, L + R)
+            return max(L, R) + 1
+
+        number_of_edges(root)
+        return self.max_diameter
+
+
+
+
+
+-------------
+LeetCode #572
+-------------
+
+
+Define same_tree function, as above, inside the main function.
+
+
+
+
+
+
 
 
 
