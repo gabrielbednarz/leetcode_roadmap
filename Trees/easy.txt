@@ -221,11 +221,13 @@ class Solution:
         def number_of_edges(node):
             if not node: 
                 return 0
+                
             # The next two lines ensure that we are going to the deepest leaves.
+            
             L = number_of_edges(node.left)
             R = number_of_edges(node.right)
             self.max_diameter = max(self.max_diameter, L + R)
-            return max(L, R) + 1
+            return max(L, R) + 1  # All subroots get at least 1 here.
 
         number_of_edges(root)
         return self.max_diameter
