@@ -241,7 +241,10 @@ LeetCode #572
 -------------
 
 
-Define same_tree function, as above, inside the main function.
+Define same_tree function, as above, inside the main function. Then the idea is to traverse the tree and check if any of its subtree
+is identical to the subtree/smaller tree we were given.
+
+
 
 
 
